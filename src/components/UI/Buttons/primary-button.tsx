@@ -3,9 +3,10 @@ import React, { Fragment } from "react";
 interface IPrimaryButtonProps {
   text: string;
   onClick: () => void;
-  disabled?: boolean;
-  className?: string;
   type: "button" | "submit" | "reset";
+  className?: string;
+  disabled?: boolean;
+  children?: React.ReactNode;
 }
 
 /**
@@ -20,6 +21,7 @@ interface IPrimaryButtonProps {
 const PrimaryButton: React.FunctionComponent<IPrimaryButtonProps> = ({
   onClick,
   text,
+  children,
   className,
   disabled,
   type,
@@ -28,11 +30,11 @@ const PrimaryButton: React.FunctionComponent<IPrimaryButtonProps> = ({
     <Fragment>
       <button
         onClick={onClick}
-        className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${className}`}
+        className={` font-bold py-2 px-4 rounded ${className} cursor-pointer`}
         disabled={disabled}
         type={type}
       >
-        {text}
+        {text || children}
       </button>
     </Fragment>
   );

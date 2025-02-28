@@ -1,9 +1,17 @@
 // React Imports
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect } from "react";
 
 // Store Imports
 import { useSidebarStore } from "../../store/sidebar-store";
+
+// Util Imports
 import { cn } from "../../utils/tailwind-cn";
+
+// React Icon Imports
+import { GoSidebarCollapse } from "react-icons/go";
+
+// Component Imports
+import PrimaryButton from "../UI/Buttons/primary-button";
 
 interface ISidebarProps {
   className?: string;
@@ -17,30 +25,60 @@ interface ISidebarProps {
  * @returns Sidebar Component
  */
 const Sidebar: FunctionComponent<ISidebarProps> = () => {
-  const { isCollapsed, toggleSidebar } = useSidebarStore();
+  const { isCollapsed, toggleSidebar, autoCollapse } = useSidebarStore();
+
+  // Automatically collapse sidebar on small screens
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        autoCollapse(true); // Collapse sidebar on small screens
+      } else {
+        autoCollapse(false); // Expand sidebar on larger screens
+      }
+    };
+
+    // Initial check
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, [autoCollapse]);
 
   return (
     <aside
       className={cn(
-        "flex flex-col transition-all duration-300 bg-primary text-primary-text border-r-1 border-l-gray-700",
-        isCollapsed ? "w-12" : "w-64"
+        "flex flex-col transition-all duration-500 bg-primary text-primary-text border-r border-gray-700",
+        isCollapsed
+          ? "w-0 opacity-0 overflow-hidden"
+          : "w-64 opacity-100 md:w-64 md:opacity-100"
       )}
     >
-      <button
-        onClick={toggleSidebar}
-        className="p-2 m-4 bg-primary text-white rounded"
-      >
-        {isCollapsed ? "Expand" : "Collapse"}
-      </button>
-      {/* Logo */}
-      <div className="h-[5dvh] border-b border-gray-700">
+      {/* Logo and Toggle Button */}
+      <div className="flex justify-between items-center h-[5dvh] border-b border-gray-700 p-4">
         <h1 className="text-2xl font-bold">Logo</h1>
+        {!isCollapsed && (
+          <PrimaryButton
+            onClick={toggleSidebar}
+            aria-label="Collapse Sidebar"
+            type="button"
+            className="p-2"
+            text=""
+          >
+            <GoSidebarCollapse />
+          </PrimaryButton>
+        )}
       </div>
 
       {/* Uploaded PDFs */}
       <div className="flex-1 overflow-y-auto">
         {["PDF 1", "PDF 2", "PDF 3", "PDF 4", "PDF 5"].map((pdf, index) => (
-          <div key={index} className="p-4 hover:bg-gray-700 cursor-pointer">
+          <div
+            key={index}
+            className="p-4 hover:bg-gray-700 cursor-pointer transition-colors duration-200"
+          >
             <p>{pdf}</p>
           </div>
         ))}
