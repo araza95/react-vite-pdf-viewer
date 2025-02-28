@@ -1,7 +1,9 @@
-import { Fragment, FunctionComponent } from "react";
+import { FunctionComponent } from "react";
 
 const Header: FunctionComponent = () => {
-  return <Fragment>Header</Fragment>;
+  return (
+    <header className="h-16 shadow-md flex items-center px-4">Header</header>
+  );
 };
 
 export default Header;
