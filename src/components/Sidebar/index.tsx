@@ -1,15 +1,37 @@
 // React Imports
 import { FunctionComponent } from "react";
 
+// Store Imports
+import { useSidebarStore } from "../../store/sidebar-store";
+import { cn } from "../../utils/tailwind-cn";
+
 interface ISidebarProps {
   className?: string;
 }
 
+/**
+ * @description Sidebar Component - This component is responsible for the layout of the sidebar.
+ *
+ * @param className - The className for the sidebar
+ *
+ * @returns Sidebar Component
+ */
 const Sidebar: FunctionComponent<ISidebarProps> = () => {
+  const { isCollapsed, toggleSidebar } = useSidebarStore();
+
   return (
     <aside
-      className={`flex flex-col w-12 md:w-64 transition-all duration-300 bg-primary text-primary-text border-r-1 border-l-gray-700`}
+      className={cn(
+        "flex flex-col transition-all duration-300 bg-primary text-primary-text border-r-1 border-l-gray-700",
+        isCollapsed ? "w-12" : "w-64"
+      )}
     >
+      <button
+        onClick={toggleSidebar}
+        className="p-2 m-4 bg-primary text-white rounded"
+      >
+        {isCollapsed ? "Expand" : "Collapse"}
+      </button>
       {/* Logo */}
       <div className="h-[5dvh] border-b border-gray-700">
         <h1 className="text-2xl font-bold">Logo</h1>
