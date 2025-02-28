@@ -13,6 +13,9 @@ import { GoSidebarCollapse } from "react-icons/go";
 // Component Imports
 import PrimaryButton from "../UI/Buttons/primary-button";
 
+// Custom Hook Imports
+import { useDimension } from "../../hooks/useWindow";
+
 interface ISidebarProps {
   className?: string;
 }
@@ -27,25 +30,16 @@ interface ISidebarProps {
 const Sidebar: FunctionComponent<ISidebarProps> = () => {
   const { isCollapsed, toggleSidebar, autoCollapse } = useSidebarStore();
 
+  const { width } = useDimension();
+
   // Automatically collapse sidebar on small screens
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        autoCollapse(true); // Collapse sidebar on small screens
-      } else {
-        autoCollapse(false); // Expand sidebar on larger screens
-      }
-    };
-
-    // Initial check
-    handleResize();
-
-    // Add event listener for window resize
-    window.addEventListener("resize", handleResize);
-
-    // Cleanup
-    return () => window.removeEventListener("resize", handleResize);
-  }, [autoCollapse]);
+    if (width < 768) {
+      autoCollapse(true); // Collapse sidebar on small screens
+    } else {
+      autoCollapse(false); // Expand sidebar on larger screens
+    }
+  }, [autoCollapse, width]);
 
   return (
     <aside
