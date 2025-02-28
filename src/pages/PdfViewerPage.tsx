@@ -4,7 +4,9 @@ import React, { Fragment } from "react";
 const PdfViewer: React.FunctionComponent = () => {
   return (
     <Fragment>
-      <div className=" h-full bg-amber-600">Children</div>
+      <div className=" h-full bg-primary">
+        <p className="text-primary-text">This is the pdf viewer page.</p>
+      </div>
     </Fragment>
   );
 };

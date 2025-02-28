@@ -1,11 +1,17 @@
 // React Imports
 import { FunctionComponent } from "react";
 
-const Sidebar: FunctionComponent = () => {
+interface ISidebarProps {
+  className?: string;
+}
+
+const Sidebar: FunctionComponent<ISidebarProps> = () => {
   return (
-    <aside className="flex flex-col w-64 bg-gray-800 text-white transition-all duration-300">
+    <aside
+      className={`flex flex-col w-12 md:w-64 transition-all duration-300 bg-primary text-primary-text border-r-1 border-l-gray-700`}
+    >
       {/* Logo */}
-      <div className="p-4 border-b border-gray-700">
+      <div className="h-[5dvh] border-b border-gray-700">
         <h1 className="text-2xl font-bold">Logo</h1>
       </div>
 

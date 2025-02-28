@@ -22,9 +22,9 @@ const ProtectedLayout: FunctionComponent = () => {
   return (
     <div className="flex h-screen w-full">
       <Sidebar />
-      <div className="flex flex-col flex-1">
+      <div className="flex flex-col flex-1 bg-primary text-primary-text">
         <Header />
-        <main className="flex-1 overflow-auto p-4">
+        <main className="h-[95dvh] flex-1 overflow-auto">
           <Outlet />
         </main>
       </div>
