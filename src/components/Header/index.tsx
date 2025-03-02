@@ -5,7 +5,7 @@ import { FunctionComponent } from "react";
 import { useSidebarStore } from "../../store/sidebar-store";
 
 // React Icon Imports
-import { GoSidebarExpand } from "react-icons/go";
+import { GoSidebarCollapse } from "react-icons/go";
 
 // Component Imports
 import PrimaryButton from "../UI/Buttons/primary-button";
@@ -24,10 +24,10 @@ const Header: FunctionComponent = () => {
             aria-label="Expand Sidebar"
             className=""
           >
-            <GoSidebarExpand className="text-xl" />
+            <GoSidebarCollapse className="text-xl" />
           </PrimaryButton>
         )}
-        <h1 className="text-2xl font-bold">Dashboard</h1>
+        <h1 className="text-2xl font-bold">Header</h1>
       </div>
     </header>
   );

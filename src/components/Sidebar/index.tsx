@@ -8,7 +8,7 @@ import { useSidebarStore } from "../../store/sidebar-store";
 import { cn } from "../../utils/tailwind-cn";
 
 // React Icon Imports
-import { GoSidebarCollapse } from "react-icons/go";
+import { GoSidebarExpand } from "react-icons/go";
 
 // Component Imports
 import PrimaryButton from "../UI/Buttons/primary-button";
@@ -61,7 +61,7 @@ const Sidebar: FunctionComponent<ISidebarProps> = () => {
             className="p-2"
             text=""
           >
-            <GoSidebarCollapse />
+            <GoSidebarExpand />
           </PrimaryButton>
         )}
       </div>
