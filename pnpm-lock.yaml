@@ -17,6 +17,9 @@ importers:
       '@react-pdf-viewer/full-screen':
         specifier: ^3.12.0
         version: 3.12.0(pdfjs-dist@3.4.120)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@react-pdf-viewer/search':
+        specifier: ^3.12.0
+        version: 3.12.0(pdfjs-dist@3.4.120)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@tailwindcss/vite':
         specifier: ^4.0.9
         version: 4.0.9(vite@6.2.0(jiti@2.4.2)(lightningcss@1.29.1))
