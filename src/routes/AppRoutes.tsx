@@ -35,7 +35,7 @@ const AppRoutes = (): JSX.Element => {
 
         {/* Protected Routes */}
         <Route element={<ProtectedLayout />}>
-          <Route path="/dashboard" element={<PdfViewer />} />
+          <Route path="/" element={<PdfViewer />} />
         </Route>
       </Routes>
     </BrowserRouter>
